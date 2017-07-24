@@ -1,0 +1,36 @@
+<nav class="navbar navbar-inverse bg-inverse">
+  <a class="navbar-brand" href="#">Taxistas</a>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h1>Siguiendo a: <strong class="text-primary">
+        {{taxistaSelecionado.nombre}}
+      </strong></h1>
+      <agm-map [latitude]="lat" [longitude]="lng" [zoom]="15">
+        <agm-marker
+          *ngFor="let taxita of taxistas"
+          [latitude]="taxita.lat"
+          [longitude]="taxita.lng"
+          [label]="taxita.nombre">
+        </agm-marker>
+      </agm-map>
+    </div>
+    <div class="col-md-4">
+      <h1>Taxistas</h1>
+      <p>
+        Seleccione para seguir:
+      </p>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let taxista of taxistas" (click)="seguir_taxita(taxista)">
+          {{ taxista.nombre }}
+        </li>
+      </ul>
+      <br>
+      <button type="button" class="btn btn-primary btn-block" (click)="dejar_seguir()">
+        Dejar de seguir
+      </button>
+    </div>
+  </div>
+</div>
